@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.persistence.Entity;
@@ -90,6 +92,12 @@ class BlogController {
 	@GetMapping("/blog-create")
 	public String blogCreate() {
 		return "blog-create";
+	}
+
+	@PostMapping("/blog-create")
+	public String createBlog(@RequestBody Blog blog) {
+		blogRepository.save(blog);
+		return "home";
 	}
 
 	@GetMapping("/blog-view")
