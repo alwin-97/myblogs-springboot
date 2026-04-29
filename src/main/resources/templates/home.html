@@ -21,53 +21,16 @@
             Latest Blogs
         </div>
 
-        <div class="row border shadow p-3 mb-5 bg-body rounded">
-            <div class="col-12 fs-2">
-                Blog Post Title
+        <div th:each="blog : ${blogs}" class="row border shadow p-3 mb-5 bg-body rounded">
+            <div class="col-12 fs-2" th:text="${blog.title}">
             </div>
-            <div class="col-12">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum
-                    mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis
-                    dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim,
-                    ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem
-                    ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="col-12" th:text="${blog.content}">
             </div>
             <div>
                 <a th:href="@{/blog-view}" class="btn btn-primary">Read More</a>
             </div>
         </div>
 
-         <div class="row border shadow p-3 mb-5 bg-body rounded">
-            <div class="col-12 fs-2">
-                Blog Post Title
-            </div>
-            <div class="col-12">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum
-                    mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis
-                    dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim,
-                    ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem
-                    ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-            <div>
-                <a th:href="@{/blog-view}" class="btn btn-primary">Read More</a>
-            </div>
-        </div>
-
-         <div class="row border shadow p-3 mb-5 bg-body rounded">
-            <div class="col-12 fs-2">
-                Blog Post Title
-            </div>
-            <div class="col-12">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum
-                    mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis
-                    dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim,
-                    ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem
-                    ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-            <div>
-                <a th:href="@{/blog-view}" class="btn btn-primary">Read More</a>
-            </div>
-        </div>
     </div>
 
     <footer th:replace="fragments/footer :: footer"></footer>

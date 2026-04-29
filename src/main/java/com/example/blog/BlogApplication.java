@@ -15,6 +15,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.ui.Model;
+import java.util.List;
 
 
 @SpringBootApplication
@@ -85,7 +87,9 @@ class BlogController {
 
 
 	@GetMapping("/")
-	public String home() {
+	public String home(Model model) {
+		List<Blog> blogs = blogRepository.findAll();
+		model.addAttribute("blogs", blogs);
 		return "home";
 	}
 
