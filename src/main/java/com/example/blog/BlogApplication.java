@@ -95,7 +95,7 @@ class BlogController {
 	}
 
 	@PostMapping("/blog-create")
-	public String createBlog(@RequestBody Blog blog) {
+	public String createBlog(Blog blog) {
 		blogRepository.save(blog);
 		return "home";
 	}
