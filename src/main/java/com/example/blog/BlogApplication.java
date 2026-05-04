@@ -101,7 +101,7 @@ class BlogController {
 	@PostMapping("/blog-create")
 	public String createBlog(Blog blog) {
 		blogRepository.save(blog);
-		return "home";
+		return "redirect:/";
 	}
 
 	@GetMapping("/blog-view")
