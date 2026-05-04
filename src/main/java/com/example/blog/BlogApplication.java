@@ -3,6 +3,7 @@ package com.example.blog;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -144,6 +145,15 @@ class BlogController {
 		blogRepository.save(blog);
 
 		return "redirect:/blog-view/" + id;
+	}
+
+	@GetMapping("/blog-delete/{id}")
+	public String deleteBlog(@PathVariable("id") Long id){
+		Blog blog = blogRepository.findById(id).orElse(null);
+		if (blog != null) {
+			blogRepository.delete(blog);
+		}
+		return "redirect:/";
 	}
 	
 }
