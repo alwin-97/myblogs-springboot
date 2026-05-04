@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <header th:replace="fragments/header :: header"></header>
+    <header th:replace="~{fragments/header :: header}"></header>
 
     <div class="container">
 
@@ -28,12 +28,13 @@
             </div>
             <div class="float-end">
                 <a th:href="@{'/blog-view/'+ ${blog.id}}" class="btn btn-sm btn-primary">Read More</a>
+                <a class="btn btn-sm btn-danger">Edit Blog</a>
             </div>
         </div>
 
     </div>
 
-    <footer th:replace="fragments/footer :: footer"></footer>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
