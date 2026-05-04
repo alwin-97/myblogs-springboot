@@ -10,14 +10,21 @@
   <body>
     <header th:replace="~{fragments/header :: header}"></header>
 
-    <form method="POST" class="container border p-3 border">
+    <form method="post"
+          th:action="@{${formAction}}"
+          class="container border p-3"
+          th:object="${blog}">
 
-      <input type="text" id="title" name="title" class="form-control mb-3" placeholder="Blog Title">
+      <h1 class="mb-3" th:text="${formTitle}">Create Blog</h1>
+
+      <input type="hidden" th:if="${blog.id != null}" th:field="*{id}">
+
+      <input type="text" id="title" name="title" class="form-control mb-3" th:field="*{title}" placeholder="Blog Title">
 
 
-      <textarea id="content" name="content" class="form-control mb-3" placeholder="Blog Content" rows="20"></textarea>
+      <textarea id="content" name="content" class="form-control mb-3" th:field="*{content}" placeholder="Blog Content" rows="20"></textarea>
 
-      <button type="submit" class="btn btn-primary">Create Blog</button>
+      <button type="submit" class="btn btn-primary" th:text="${submitLabel}">Create Blog</button>
 
     </form>
 

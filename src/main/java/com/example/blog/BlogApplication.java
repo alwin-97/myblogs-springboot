@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.persistence.Entity;
@@ -95,7 +94,12 @@ class BlogController {
 	}
 
 	@GetMapping("/blog-create")
-	public String blogCreate() {
+	public String blogCreate(Model model) {
+		Blog blog = new Blog();
+		model.addAttribute("blog", blog);
+		model.addAttribute("formAction", "/blog-create");
+		model.addAttribute("formTitle", "Create Blog");
+		model.addAttribute("submitLabel", "Create Blog");
 		return "blog-create";
 	}
 
@@ -107,9 +111,39 @@ class BlogController {
 
 	@GetMapping("/blog-view/{id}")
 	public String blogView(@PathVariable("id") Long id, Model model) {
-		Blog blog = blogRepository.findById(id).get();
+		Blog blog = blogRepository.findById(id).orElse(null);
+		if (blog == null) {
+			return "redirect:/";
+		}
 		model.addAttribute("blog",blog);
 		return "blog-view";
 	}
 
+	@GetMapping("/blog-edit/{id}")
+	public String blogEdit(@PathVariable("id") Long id, Model model) {
+		Blog blog = blogRepository.findById(id).orElse(null);
+		if (blog == null) {
+			return "redirect:/";
+		}
+		model.addAttribute("blog",blog);
+		model.addAttribute("formAction", "/blog-edit/" + id);
+		model.addAttribute("formTitle", "Edit Blog");
+		model.addAttribute("submitLabel", "Update Blog");
+		return "blog-create";
+	}
+
+	@PostMapping("/blog-edit/{id}")
+	public String updateBlog(@PathVariable("id") Long id, Blog blogForm) {
+		Blog blog = blogRepository.findById(id).orElse(null);
+		if (blog == null) {
+			return "redirect:/";
+		}
+
+		blog.setTitle(blogForm.getTitle());
+		blog.setContent(blogForm.getContent());
+		blogRepository.save(blog);
+
+		return "redirect:/blog-view/" + id;
+	}
+	
 }
