@@ -26,8 +26,8 @@
             </div>
             <div class="col-12" th:text="${blog.content}">
             </div>
-            <div>
-                <a th:href="@{/blog-view}" class="btn btn-primary">Read More</a>
+            <div class="float-end">
+                <a th:href="@{'/blog-view/'+ ${blog.id}}" class="btn btn-sm btn-primary">Read More</a>
             </div>
         </div>
 
